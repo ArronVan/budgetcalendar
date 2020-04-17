@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/budgetcalendar/static/css/main.d1b05096.chunk.css",
+    "main.js": "/budgetcalendar/static/js/main.4843e44e.chunk.js",
+    "main.js.map": "/budgetcalendar/static/js/main.4843e44e.chunk.js.map",
+    "runtime-main.js": "/budgetcalendar/static/js/runtime-main.4d9a6e75.js",
+    "runtime-main.js.map": "/budgetcalendar/static/js/runtime-main.4d9a6e75.js.map",
+    "static/js/2.ff8fe0e6.chunk.js": "/budgetcalendar/static/js/2.ff8fe0e6.chunk.js",
+    "static/js/2.ff8fe0e6.chunk.js.map": "/budgetcalendar/static/js/2.ff8fe0e6.chunk.js.map",
+    "index.html": "/budgetcalendar/index.html",
+    "precache-manifest.d656f628322b3f0aef6a53d4e80afefb.js": "/budgetcalendar/precache-manifest.d656f628322b3f0aef6a53d4e80afefb.js",
+    "service-worker.js": "/budgetcalendar/service-worker.js",
+    "static/css/main.d1b05096.chunk.css.map": "/budgetcalendar/static/css/main.d1b05096.chunk.css.map",
+    "static/js/2.ff8fe0e6.chunk.js.LICENSE.txt": "/budgetcalendar/static/js/2.ff8fe0e6.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/budgetcalendar/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4d9a6e75.js",
+    "static/js/2.ff8fe0e6.chunk.js",
+    "static/css/main.d1b05096.chunk.css",
+    "static/js/main.4843e44e.chunk.js"
+  ]
+}

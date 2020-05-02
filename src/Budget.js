@@ -10,7 +10,7 @@ class Budget extends React.Component {
             budget: 500,
             selectedDate: Date.now(),
             dates: [
-                {date: new Date(2020, 2, 25),
+                {date: new Date(2020, 3, 19),
                  increases: [{description: "Add Money 1", value: 100}, {description: "Add Money 2", value: 200.5}],
                  decreases: [{description: "Pay Money 1", value: 20.3}]
                 },
@@ -24,6 +24,8 @@ class Budget extends React.Component {
         this.addDate = this.addDate.bind(this);
         this.getBudgetAmountOnDate = this.getBudgetAmountOnDate.bind(this);
         this.changeSelectedDate = this.changeSelectedDate.bind(this);
+        this.getAddTransactionsOnDate = this.getAddTransactionsOnDate.bind(this);
+        this.getSubTransactionsOnDate = this.getSubTransactionsOnDate.bind(this);
     }
 
     addDate() {
@@ -65,6 +67,22 @@ class Budget extends React.Component {
         return amount.toFixed(2);
     }
 
+    getAddTransactionsOnDate(date) {
+        for (var i = 0; i < this.state.dates.length; i++)
+            if (isSameDay(date, this.state.dates[i].date))
+                return this.state.dates[i].increases;
+        
+        return [];
+    }
+
+    getSubTransactionsOnDate(date) {
+        for (var i = 0; i < this.state.dates.length; i++)
+            if (isSameDay(date, this.state.dates[i].date))
+                return this.state.dates[i].decreases;
+        
+        return [];
+    }
+
     render() {
         return (
             <>
@@ -79,6 +97,8 @@ class Budget extends React.Component {
                     selectedDate={this.state.selectedDate}
                     changeSelectedDate={this.changeSelectedDate}
                     getBudgetAmountOnDate={this.getBudgetAmountOnDate}
+                    getAddTransactionsOnDate={this.getAddTransactionsOnDate}
+                    getSubTransactionsOnDate={this.getSubTransactionsOnDate}
                     dates={this.state.dates}
                     addDate={this.addDate2}
                     ref="calendar"

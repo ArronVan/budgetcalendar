@@ -52,6 +52,7 @@ class Calendar extends React.Component {
                             onClick={() => this.props.changeSelectedDate(allDaysInMonth[index])}
                             className={isSameDay(allDaysInMonth[index], this.props.selectedDate) ? "CalendarListSelected" : "CalendarList"}>
                             {getDayOfWeekName(allDaysInMonth[index])} {getDate(allDaysInMonth[index])}: {this.props.getBudgetAmountOnDate(allDaysInMonth[index])}
+                            &nbsp;Transactions: +{this.props.getAddTransactionsOnDate(allDaysInMonth[index]).length} -{this.props.getSubTransactionsOnDate(allDaysInMonth[index]).length}
                         </div>
                     )}
                 </List>

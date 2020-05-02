@@ -7,22 +7,22 @@ class Budget extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            budget: 500.05,
+            budget: 500,
             selectedDate: Date.now(),
             dates: [
                 {date: new Date(2020, 2, 25),
                  increases: [{description: "Add Money 1", value: 100}, {description: "Add Money 2", value: 200.5}],
-                 decreases: [{description: "Pay Money 1", value: 20}]
+                 decreases: [{description: "Pay Money 1", value: 20.3}]
                 },
-                {date: new Date(2020, 4, 1),
-                 increases: [{description: "Add Money 1", value: 300}],
+                {date: new Date(2020, 4, 11),
+                 increases: [{description: "Add Money 1", value: 300.02}],
                  decreases: [{description: "Pay Money 1", value: 500}]
                 }
             ]
         };
 
         this.addDate = this.addDate.bind(this);
-        this.getBudgetAmountOnCurrentDate = this.getBudgetAmountOnCurrentDate.bind(this);
+        this.getBudgetAmountOnDate = this.getBudgetAmountOnDate.bind(this);
         this.changeSelectedDate = this.changeSelectedDate.bind(this);
     }
 
@@ -44,14 +44,14 @@ class Budget extends React.Component {
         }));
     }
 
-    getBudgetAmountOnCurrentDate() {
+    getBudgetAmountOnDate(date) {
         let amount = this.state.budget;
 
         var i;
         for (i = 0; i < this.state.dates.length; i++) {
             let indexDate = this.state.dates[i];
 
-            if (isBefore(indexDate.date, this.state.selectedDate) || isSameDay(indexDate.date, this.state.selectedDate)) {
+            if (isBefore(indexDate.date, date) || isSameDay(indexDate.date, date)) {
                 var j;
                 for (j = 0; j < indexDate.increases.length; j++) {
                     amount += indexDate.increases[j].value;
@@ -62,7 +62,7 @@ class Budget extends React.Component {
             }
         }
 
-        return amount;
+        return amount.toFixed(2);
     }
 
     render() {
@@ -71,10 +71,18 @@ class Budget extends React.Component {
                 <p>
                     Selected Date: {getMonthName(this.state.selectedDate)} {getDate(this.state.selectedDate)}, {getYear(this.state.selectedDate)}
                     <br/>
-                    Budget: {this.getBudgetAmountOnCurrentDate()}
+                    Budget: {this.getBudgetAmountOnDate(this.state.selectedDate)}
                 </p>
                 <button onClick={this.addDate}>Click</button>
-                <Calendar budget={this.state.budget} changeSelectedDate={this.changeSelectedDate} dates={this.state.dates} addDate={this.addDate2} ref="calendar" />
+                <Calendar
+                    budget={this.state.budget}
+                    selectedDate={this.state.selectedDate}
+                    changeSelectedDate={this.changeSelectedDate}
+                    getBudgetAmountOnDate={this.getBudgetAmountOnDate}
+                    dates={this.state.dates}
+                    addDate={this.addDate2}
+                    ref="calendar"
+                />
             </>
         );
     };

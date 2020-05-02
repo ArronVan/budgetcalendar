@@ -1,0 +1,19 @@
+.CalendarList {
+    border-bottom: 1px solid #d9dddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.CalendarList:hover {
+    background-color: #d9dddd;
+}
+
+.CalendarListSelected {
+    border-bottom: 1px solid #e6f5f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e6f5f8;
+}

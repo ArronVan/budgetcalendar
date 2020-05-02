@@ -11,10 +11,12 @@
     "locale": "^0.1.0",
     "moment": "^2.25.0",
     "moment-timezone": "^0.5.28",
+    "react": "^16.13.1",
     "react-day-picker": "^7.4.8",
     "react-dom": "^16.13.1",
     "react-moment": "^0.9.7",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "react-window": "^1.8.5"
   },
   "scripts": {
     "predeploy": "npm run build",

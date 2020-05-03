@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import Budget from './Budget';
+import Main from './Main';
 
 function App() {
   return (
     <div className="App">
-      <Budget/>
+      <Main/>
     </div>
   );
 }

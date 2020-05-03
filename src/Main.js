@@ -3,7 +3,7 @@ import Calendar from './Calendar';
 import { getMonthName } from './DateFunctions'
 import { getYear, getDate, isBefore, isSameDay } from 'date-fns';
 
-class Budget extends React.Component {
+class Main extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -108,4 +108,4 @@ class Budget extends React.Component {
     };
 }
 
-export default Budget;
+export default Main;

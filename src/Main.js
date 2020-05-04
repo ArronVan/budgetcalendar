@@ -1,7 +1,10 @@
-import React from 'react';
-import Calendar from './Calendar';
+import React from 'react'
+import Calendar from './Calendar'
+import InputFields from './InputFields'
+import Transaction from './Transaction'
 import { getMonthName } from './DateFunctions'
-import { getYear, getDate, isBefore, isSameDay } from 'date-fns';
+import { getYear, getDate, isBefore, isSameDay } from 'date-fns'
+import Grid from '@material-ui/core/Grid';
 
 class Main extends React.Component {
     constructor(props) {
@@ -22,10 +25,12 @@ class Main extends React.Component {
         };
 
         this.addDate = this.addDate.bind(this);
+        this.changeBudget = this.changeBudget.bind(this);
         this.getBudgetAmountOnDate = this.getBudgetAmountOnDate.bind(this);
         this.changeSelectedDate = this.changeSelectedDate.bind(this);
         this.getAddTransactionsOnDate = this.getAddTransactionsOnDate.bind(this);
         this.getSubTransactionsOnDate = this.getSubTransactionsOnDate.bind(this);
+        this.addTransactionOnSelectedDate = this.addTransactionOnSelectedDate.bind(this);
     }
 
     addDate() {
@@ -38,6 +43,12 @@ class Main extends React.Component {
         this.setState((state, props) => ({
             dates: [...this.state.dates, date]
         }));
+    }
+
+    changeBudget(amount) {
+        this.setState({
+            budget: amount
+        });
     }
 
     changeSelectedDate(date) {
@@ -83,6 +94,35 @@ class Main extends React.Component {
         return [];
     }
 
+    addTransactionOnSelectedDate(amount, description, isAdd) {
+        for (var i = 0; i < this.state.dates.length; i++)
+            if (isSameDay(this.state.selectedDate, this.state.dates[i].date))
+            {
+                var dateEntry;
+                if (isAdd)
+                {
+                    dateEntry = this.state.dates;
+                    dateEntry[i].increases = [...dateEntry[i].increases, {description: description, value: amount}];
+                    this.setState({dates: dateEntry});
+                }
+                else
+                {
+                    dateEntry = this.state.dates;
+                    dateEntry[i].decreases = [...dateEntry[i].decreases, {description: description, value: amount}];
+                    this.setState({dates: dateEntry});
+                }
+                return;
+            }
+
+        var newDate = { date: this.state.selectedDate, increases: [], decreases: [] };
+        if (isAdd)
+            newDate.increases = [{description: description, value: amount}];
+        else
+            newDate.decreases = [{description: description, value: amount}];
+        
+        this.addDate2(newDate);
+    }
+
     render() {
         return (
             <>
@@ -92,17 +132,28 @@ class Main extends React.Component {
                     Budget: {this.getBudgetAmountOnDate(this.state.selectedDate)}
                 </p>
                 <button onClick={this.addDate}>Click</button>
-                <Calendar
-                    budget={this.state.budget}
-                    selectedDate={this.state.selectedDate}
-                    changeSelectedDate={this.changeSelectedDate}
-                    getBudgetAmountOnDate={this.getBudgetAmountOnDate}
-                    getAddTransactionsOnDate={this.getAddTransactionsOnDate}
-                    getSubTransactionsOnDate={this.getSubTransactionsOnDate}
-                    dates={this.state.dates}
-                    addDate={this.addDate2}
-                    ref="calendar"
-                />
+                <InputFields addTransactionOnSelectedDate={this.addTransactionOnSelectedDate} changeBudget={this.changeBudget}/>
+                <Grid container justify="center" spacing={0}>
+                    <Grid item xs>
+                    <Calendar
+                        budget={this.state.budget}
+                        selectedDate={this.state.selectedDate}
+                        changeSelectedDate={this.changeSelectedDate}
+                        getBudgetAmountOnDate={this.getBudgetAmountOnDate}
+                        getAddTransactionsOnDate={this.getAddTransactionsOnDate}
+                        getSubTransactionsOnDate={this.getSubTransactionsOnDate}
+                        dates={this.state.dates}
+                        addDate={this.addDate2}
+                        ref="calendar"
+                    />
+                    </Grid>
+                    <Grid item xs>
+                        <Transaction
+                          increases={this.getAddTransactionsOnDate(this.state.selectedDate)}
+                          decreases={this.getSubTransactionsOnDate(this.state.selectedDate)}
+                        />
+                    </Grid>
+                </Grid>
             </>
         );
     };

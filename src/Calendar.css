@@ -1,3 +1,9 @@
+.List{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .CalendarList {
     border-bottom: 1px solid #d9dddd;
     display: flex;

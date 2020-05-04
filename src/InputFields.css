@@ -1,0 +1,12 @@
+.InputField {
+    height: 100%;
+    padding: 30px 0;
+    text-align: center;
+}
+
+.InputFieldInput {
+    font-size: 20px;
+    padding: 8px 15px;
+    border-radius: 4px;
+    color: #333;
+}

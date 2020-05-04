@@ -4,7 +4,7 @@ import InputFields from './InputFields'
 import Transaction from './Transaction'
 import { getMonthName } from './DateFunctions'
 import { getYear, getDate, isBefore, isSameDay } from 'date-fns'
-import Grid from '@material-ui/core/Grid';
+import Grid from '@material-ui/core/Grid'
 
 class Main extends React.Component {
     constructor(props) {
@@ -24,7 +24,6 @@ class Main extends React.Component {
             ]
         };
 
-        this.addDate = this.addDate.bind(this);
         this.changeBudget = this.changeBudget.bind(this);
         this.getBudgetAmountOnDate = this.getBudgetAmountOnDate.bind(this);
         this.changeSelectedDate = this.changeSelectedDate.bind(this);
@@ -33,13 +32,7 @@ class Main extends React.Component {
         this.addTransactionOnSelectedDate = this.addTransactionOnSelectedDate.bind(this);
     }
 
-    addDate() {
-        this.setState((state, props) => ({
-            dates: [...this.state.dates, {date: 3, increases: [100], decreases: [50], value: 1000}],
-        }));
-    }
-
-    addDate2 = (date) => {
+    addDate = (date) => {
         this.setState((state, props) => ({
             dates: [...this.state.dates, date]
         }));
@@ -120,18 +113,16 @@ class Main extends React.Component {
         else
             newDate.decreases = [{description: description, value: amount}];
         
-        this.addDate2(newDate);
+        this.addDate(newDate);
     }
 
     render() {
         return (
             <>
                 <p>
+                    <h1>Current Balance: ${this.getBudgetAmountOnDate(this.state.selectedDate)}</h1>
                     Selected Date: {getMonthName(this.state.selectedDate)} {getDate(this.state.selectedDate)}, {getYear(this.state.selectedDate)}
-                    <br/>
-                    Budget: {this.getBudgetAmountOnDate(this.state.selectedDate)}
                 </p>
-                <button onClick={this.addDate}>Click</button>
                 <InputFields addTransactionOnSelectedDate={this.addTransactionOnSelectedDate} changeBudget={this.changeBudget}/>
                 <Grid container justify="center" spacing={0}>
                     <Grid item xs>
@@ -143,7 +134,6 @@ class Main extends React.Component {
                         getAddTransactionsOnDate={this.getAddTransactionsOnDate}
                         getSubTransactionsOnDate={this.getSubTransactionsOnDate}
                         dates={this.state.dates}
-                        addDate={this.addDate2}
                         ref="calendar"
                     />
                     </Grid>

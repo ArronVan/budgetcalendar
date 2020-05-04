@@ -24,6 +24,7 @@ class Calendar extends React.Component {
 
         return (
             <>
+                {/*
                 <ul>
                     {this.props.dates.map((day, index) => {
                         return <li key={index}>
@@ -40,6 +41,7 @@ class Calendar extends React.Component {
                         </li>
                     })}
                 </ul>
+                */}
                 <FormControl>
                     <Select value={this.state.month} onChange={(event) => this.setState({month: event.target.value})}>
                         <MenuItem value={0}>Janurary</MenuItem>

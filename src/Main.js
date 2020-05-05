@@ -6,6 +6,8 @@ import { getMonthName } from './DateFunctions'
 import { getYear, getDate, isBefore, isSameDay } from 'date-fns'
 import Grid from '@material-ui/core/Grid'
 import {NotificationContainer, NotificationManager} from 'react-notifications'
+import Button from '@material-ui/core/Button'
+import Modal from '@material-ui/core/Modal'
 
 import './Main.css'
 import 'react-notifications/lib/notifications.css';
@@ -25,7 +27,8 @@ class Main extends React.Component {
                  increases: [{description: "Add Money 1", value: 300.02}],
                  decreases: [{description: "Pay Money 1", value: 500}]
                 }
-            ]
+            ],
+            resetModalOpen: false
         };
 
         this.changeBudget = this.changeBudget.bind(this);
@@ -36,6 +39,9 @@ class Main extends React.Component {
         this.addTransactionOnSelectedDate = this.addTransactionOnSelectedDate.bind(this);
         this.deleteTransactionOnSelectedDate = this.deleteTransactionOnSelectedDate.bind(this);
         this.createNotification = this.createNotification.bind(this);
+        this.closeResetModal = this.closeResetModal.bind(this);
+        this.openResetModal = this.openResetModal.bind(this);
+        this.resetAllData = this.resetAllData.bind(this);
     }
 
     addDate = (date) => {
@@ -171,6 +177,24 @@ class Main extends React.Component {
         }
     }
 
+    closeResetModal() {
+        this.setState({resetModalOpen: false});
+    }
+    
+    openResetModal() {
+        this.setState({resetModalOpen: true});
+    }
+
+    resetAllData() {
+        this.setState({
+            budget: 0,
+            selectedDate: Date.now(),
+            dates: []
+        });
+        this.closeResetModal();
+        this.createNotification('info', null, "All transactions have been removed and the current balance has been set to $0.");
+    }
+
     render() {
         return (
             <>
@@ -200,15 +224,33 @@ class Main extends React.Component {
                     </Grid>
                     <Grid item xs>
                         <div className="transaction">
-                        <Transaction
-                          increases={this.getAddTransactionsOnDate(this.state.selectedDate)}
-                          decreases={this.getSubTransactionsOnDate(this.state.selectedDate)}
-                          deleteTransactionOnSelectedDate={this.deleteTransactionOnSelectedDate}
-                          createNotification={this.createNotification}
-                        />
+                            <Transaction
+                            increases={this.getAddTransactionsOnDate(this.state.selectedDate)}
+                            decreases={this.getSubTransactionsOnDate(this.state.selectedDate)}
+                            deleteTransactionOnSelectedDate={this.deleteTransactionOnSelectedDate}
+                            createNotification={this.createNotification}
+                            />
                         </div>
                     </Grid>
                 </Grid>
+                <div className="reset">
+                    <Button className="reset" color="secondary" onClick={this.openResetModal}>Reset All</Button>
+                </div>
+                <Modal
+                  open={this.state.resetModalOpen}
+                  onClose={this.closeResetModal}
+                >
+                    <div className="modal">
+                        This will remove all transactions and set the initial balance to $0.
+                        <br/>
+                        Are you sure you want to reset?
+                        <br/>
+                        <div style={{marginTop: '10px', textAlign: 'right'}}>
+                            <Button style={{marginRight: '10px'}} variant="contained" onClick={this.closeResetModal}>Cancel</Button>
+                            <Button style={{marginLeft: '10px'}} variant="contained" color="secondary" onClick={this.resetAllData}>Yes, Reset</Button>
+                        </div>
+                    </div>
+                </Modal>
             </>
         );
     };

@@ -37,7 +37,7 @@ class Transaction extends React.Component {
 
     deleteTransaction(index, isAdd) {
         this.props.deleteTransactionOnSelectedDate(index, isAdd);
-        this.props.createNotification('info', null, "Your transaction has successfully been removed!");
+        this.props.createNotification('info', null, "Your transaction has been removed.");
     }
 
     render() {
@@ -51,10 +51,10 @@ class Transaction extends React.Component {
                                 <button className="delete-btn" onClick={() => this.enableDeleteConfirm(index, true)}>x</button>
                             </li>
                             {index === this.state.deleteSelected && this.state.onAdd ? <>
-                                Are you sure you want to delete this transaction?
+                                Are you sure you want to remove this transaction?
                                 <br/>
                                 <Button style={{marginTop: '10px', marginRight: '10px'}} variant="contained" color="primary" onClick={this.disableDeleteConfirm}>Cancel</Button>
-                                <Button style={{marginTop: '10px', marginLeft: '10px'}} variant="contained" color="secondary" onClick={() => this.deleteTransaction(index, true)}>Delete</Button>
+                                <Button style={{marginTop: '10px', marginLeft: '10px'}} variant="contained" color="secondary" onClick={() => this.deleteTransaction(index, true)}>Remove</Button>
                             </> : ''}
                         </>
                     })}
@@ -65,10 +65,10 @@ class Transaction extends React.Component {
                                 <button className="delete-btn" onClick={() => this.enableDeleteConfirm(index, false)}>x</button>
                             </li>
                             {index === this.state.deleteSelected && !this.state.onAdd ? <>
-                                Are you sure you want to delete this transaction?
+                                Are you sure you want to remove this transaction?
                                 <br/>
                                 <Button style={{marginTop: '10px', marginRight: '10px'}} variant="contained" color="primary" onClick={this.disableDeleteConfirm}>Cancel</Button>
-                                <Button style={{marginTop: '10px', marginLeft: '10px'}} variant="contained" color="secondary" onClick={() => this.deleteTransaction(index, false)}>Delete</Button>
+                                <Button style={{marginTop: '10px', marginLeft: '10px'}} variant="contained" color="secondary" onClick={() => this.deleteTransaction(index, false)}>Remove</Button>
                             </> : ''}
                         </>
                     })}

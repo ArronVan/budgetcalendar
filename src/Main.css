@@ -4,3 +4,18 @@
     align-items: center;
     justify-content: center;
 }
+
+.reset {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.modal {
+    position: absolute;
+    top: 45%;
+    left: 40%;
+    background-color: #fff;
+    box-shadow: 10px 15px 15px #555;
+    padding: 1em;
+}

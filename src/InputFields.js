@@ -11,6 +11,7 @@ class InputFields extends React.Component {
         this.state = {
             showChangeBudget: false,
             showAddTransaction: false,
+            transactionDescription: "",
             currencyValue: null,
             isAdd: true
         };
@@ -33,19 +34,21 @@ class InputFields extends React.Component {
 
     changeBudget() {
         this.props.changeBudget(this.state.currencyValue);
+        this.props.createNotification("success", "Initial Balance Changed", "Your initial balance has been changed to $" + this.state.currencyValue.toFixed(2) + "!");
         this.setState({currencyValue: null});
         this.closeAll();
     }
 
     addTransaction() {
-        this.props.addTransactionOnSelectedDate(this.state.currencyValue, "Test", this.state.isAdd);
-        this.setState({currencyValue: null, isAdd: true});
+        this.props.addTransactionOnSelectedDate(this.state.currencyValue, this.state.transactionDescription, this.state.isAdd);
+        this.props.createNotification("success", "Transaction Added", "Your transaction has been successfully added!");
+        this.setState({transactionDescription: "", currencyValue: null, isAdd: true});
         this.closeAll();
     }
 
     showChangeBudget() {
         if (!this.state.showChangeBudget)
-            this.setState({currencyValue: null});
+            this.setState({transactionDescription: "", currencyValue: null, isAdd: true});
 
         this.setState({showChangeBudget: true});
         this.setState({showAddTransaction: false});
@@ -55,7 +58,7 @@ class InputFields extends React.Component {
 
     showAddTransaction() {
         if (!this.state.showAddTransaction)
-            this.setState({currencyValue: null, isAdd: true});
+            this.setState({transactionDescription: "", currencyValue: null, isAdd: true});
 
         this.setState({showAddTransaction: true});
         this.setState({showChangeBudget: false});
@@ -64,7 +67,7 @@ class InputFields extends React.Component {
     }
 
     closeAll() {
-        this.setState({currencyValue: null, isAdd: true});
+        this.setState({transactionDescription: "", currencyValue: null, isAdd: true});
         this.setState({showChangeBudget: false});
         this.setState({showAddTransaction: false});
 
@@ -74,20 +77,20 @@ class InputFields extends React.Component {
     render() {
         return (
             <div ref={node => { this.node = node; }}>
-                <Button style={{marginRight: '10px'}} variant="contained" onClick={this.showChangeBudget}>Change Initial Budget</Button>
+                <Button style={{marginRight: '10px'}} variant="contained" onClick={this.showChangeBudget}>Change Initial Balance</Button>
                 <Button style={{marginLeft: '10px'}} variant="contained" onClick={this.showAddTransaction}>Add Transaction</Button>
                 <div className="InputField">
                     {this.state.showChangeBudget ?
                     <>
                         <NumberFormat
-                        value={this.state.currencyValue}
-                        thousandSeparator={true}
-                        allowNegative={false}
-                        prefix={'$'}
-                        placeholder="$0.00"
-                        decimalScale={2}
-                        onValueChange={(values) => { this.setState({currencyValue: values.floatValue}); }}
-                        className="InputFieldInput"
+                          value={this.state.currencyValue}
+                          thousandSeparator={true}
+                          allowNegative={false}
+                          prefix={'$'}
+                          placeholder="$0.00"
+                          decimalScale={2}
+                          onValueChange={(values) => { this.setState({currencyValue: values.floatValue}); }}
+                          className="InputFieldInput"
                         />
                         <br/>
                         <Button style={{marginTop: '30px', marginRight: '10px'}} variant="contained" color="secondary" onClick={this.closeAll}>Cancel</Button>
@@ -95,15 +98,22 @@ class InputFields extends React.Component {
                     </> : ''}
                     {this.state.showAddTransaction ?
                     <>
+                        <input
+                          type="text"
+                          className="InputFieldInput"
+                          placeholder="Enter Description"
+                          value={this.state.transactionDescription}
+                          onChange={(event) => this.setState({transactionDescription: event.target.value})}
+                        />
                         <NumberFormat
-                        value={this.state.currencyValue}
-                        thousandSeparator={true}
-                        allowNegative={false}
-                        prefix={'$'}
-                        placeholder="$0.00"
-                        decimalScale={2}
-                        onValueChange={(values) => { this.setState({currencyValue: values.floatValue}); }}
-                        className="InputFieldInput"
+                          value={this.state.currencyValue}
+                          thousandSeparator={true}
+                          allowNegative={false}
+                          prefix={'$'}
+                          placeholder="$0.00"
+                          decimalScale={2}
+                          onValueChange={(values) => { this.setState({currencyValue: values.floatValue}); }}
+                          className="InputFieldInput"
                         />
                         <br/>
                         <Radio

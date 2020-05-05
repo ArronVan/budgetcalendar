@@ -5,8 +5,10 @@ import Transaction from './Transaction'
 import { getMonthName } from './DateFunctions'
 import { getYear, getDate, isBefore, isSameDay } from 'date-fns'
 import Grid from '@material-ui/core/Grid'
+import {NotificationContainer, NotificationManager} from 'react-notifications'
 
 import './Main.css'
+import 'react-notifications/lib/notifications.css';
 
 class Main extends React.Component {
     constructor(props) {
@@ -33,6 +35,7 @@ class Main extends React.Component {
         this.getSubTransactionsOnDate = this.getSubTransactionsOnDate.bind(this);
         this.addTransactionOnSelectedDate = this.addTransactionOnSelectedDate.bind(this);
         this.deleteTransactionOnSelectedDate = this.deleteTransactionOnSelectedDate.bind(this);
+        this.createNotification = this.createNotification.bind(this);
     }
 
     addDate = (date) => {
@@ -152,14 +155,35 @@ class Main extends React.Component {
         this.setState({dates: dateEntry});
     }
 
+    createNotification(type, title, message) {
+        switch (type) {
+            case 'success':
+                NotificationManager.success(message, title);
+                break;
+            case 'warning':
+                NotificationManager.warning(message, title);
+                break;
+            case 'error':
+                NotificationManager.error(message, title);
+                break;
+            default:
+                NotificationManager.info(message, title);
+        }
+    }
+
     render() {
         return (
             <>
+                <NotificationContainer/>
                 <p>
                     <h1>Current Balance: ${this.getBudgetAmountOnDate(this.state.selectedDate)}</h1>
                     Selected Date: {getMonthName(this.state.selectedDate)} {getDate(this.state.selectedDate)}, {getYear(this.state.selectedDate)}
                 </p>
-                <InputFields addTransactionOnSelectedDate={this.addTransactionOnSelectedDate} changeBudget={this.changeBudget}/>
+                <InputFields
+                  addTransactionOnSelectedDate={this.addTransactionOnSelectedDate}
+                  changeBudget={this.changeBudget}
+                  createNotification={this.createNotification}
+                />
                 <Grid container justify="center" spacing={0}>
                     <Grid item xs>
                     <Calendar
@@ -170,6 +194,7 @@ class Main extends React.Component {
                         getAddTransactionsOnDate={this.getAddTransactionsOnDate}
                         getSubTransactionsOnDate={this.getSubTransactionsOnDate}
                         dates={this.state.dates}
+                        createNotification={this.createNotification}
                         ref="calendar"
                     />
                     </Grid>
@@ -179,6 +204,7 @@ class Main extends React.Component {
                           increases={this.getAddTransactionsOnDate(this.state.selectedDate)}
                           decreases={this.getSubTransactionsOnDate(this.state.selectedDate)}
                           deleteTransactionOnSelectedDate={this.deleteTransactionOnSelectedDate}
+                          createNotification={this.createNotification}
                         />
                         </div>
                     </Grid>

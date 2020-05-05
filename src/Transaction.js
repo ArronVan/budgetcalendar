@@ -37,6 +37,7 @@ class Transaction extends React.Component {
 
     deleteTransaction(index, isAdd) {
         this.props.deleteTransactionOnSelectedDate(index, isAdd);
+        this.props.createNotification('info', null, "Your transaction has successfully been removed!");
     }
 
     render() {

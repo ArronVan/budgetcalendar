@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/budgetcalendar/static/css/main.9f34b1d9.chunk.css",
-    "main.js": "/budgetcalendar/static/js/main.4dadd7e8.chunk.js",
-    "main.js.map": "/budgetcalendar/static/js/main.4dadd7e8.chunk.js.map",
+    "main.css": "/budgetcalendar/static/css/main.125e3e4f.chunk.css",
+    "main.js": "/budgetcalendar/static/js/main.8243ba68.chunk.js",
+    "main.js.map": "/budgetcalendar/static/js/main.8243ba68.chunk.js.map",
     "runtime-main.js": "/budgetcalendar/static/js/runtime-main.4d9a6e75.js",
     "runtime-main.js.map": "/budgetcalendar/static/js/runtime-main.4d9a6e75.js.map",
     "static/css/2.81168d54.chunk.css": "/budgetcalendar/static/css/2.81168d54.chunk.css",
-    "static/js/2.c8252b00.chunk.js": "/budgetcalendar/static/js/2.c8252b00.chunk.js",
-    "static/js/2.c8252b00.chunk.js.map": "/budgetcalendar/static/js/2.c8252b00.chunk.js.map",
+    "static/js/2.bb6a1b73.chunk.js": "/budgetcalendar/static/js/2.bb6a1b73.chunk.js",
+    "static/js/2.bb6a1b73.chunk.js.map": "/budgetcalendar/static/js/2.bb6a1b73.chunk.js.map",
     "index.html": "/budgetcalendar/index.html",
-    "precache-manifest.830bdd14ff62061eb9258b42d566ebb7.js": "/budgetcalendar/precache-manifest.830bdd14ff62061eb9258b42d566ebb7.js",
+    "precache-manifest.53d368e7c0bcc3d0415adae53b44aa0f.js": "/budgetcalendar/precache-manifest.53d368e7c0bcc3d0415adae53b44aa0f.js",
     "service-worker.js": "/budgetcalendar/service-worker.js",
     "static/css/2.81168d54.chunk.css.map": "/budgetcalendar/static/css/2.81168d54.chunk.css.map",
-    "static/css/main.9f34b1d9.chunk.css.map": "/budgetcalendar/static/css/main.9f34b1d9.chunk.css.map",
-    "static/js/2.c8252b00.chunk.js.LICENSE.txt": "/budgetcalendar/static/js/2.c8252b00.chunk.js.LICENSE.txt",
+    "static/css/main.125e3e4f.chunk.css.map": "/budgetcalendar/static/css/main.125e3e4f.chunk.css.map",
+    "static/js/2.bb6a1b73.chunk.js.LICENSE.txt": "/budgetcalendar/static/js/2.bb6a1b73.chunk.js.LICENSE.txt",
     "static/media/notifications.css": "/budgetcalendar/static/media/notification.c0d3c94c.eot"
   },
   "entrypoints": [
     "static/js/runtime-main.4d9a6e75.js",
     "static/css/2.81168d54.chunk.css",
-    "static/js/2.c8252b00.chunk.js",
-    "static/css/main.9f34b1d9.chunk.css",
-    "static/js/main.4dadd7e8.chunk.js"
+    "static/js/2.bb6a1b73.chunk.js",
+    "static/css/main.125e3e4f.chunk.css",
+    "static/js/main.8243ba68.chunk.js"
   ]
 }

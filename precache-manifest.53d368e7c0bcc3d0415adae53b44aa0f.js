@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "afbce96497f84a218c5944d278f7c2c4",
+    "revision": "3352361e1f638c13b8cf624a8e8ce861",
     "url": "/budgetcalendar/index.html"
   },
   {
-    "revision": "65dce6b2a618339cbf6d",
+    "revision": "8e237702fb7d3d16d8d1",
     "url": "/budgetcalendar/static/css/2.81168d54.chunk.css"
   },
   {
-    "revision": "bcc4a42ad9ead695ce6f",
-    "url": "/budgetcalendar/static/css/main.9f34b1d9.chunk.css"
+    "revision": "fa01d63b6bbde8fb69b1",
+    "url": "/budgetcalendar/static/css/main.125e3e4f.chunk.css"
   },
   {
-    "revision": "65dce6b2a618339cbf6d",
-    "url": "/budgetcalendar/static/js/2.c8252b00.chunk.js"
+    "revision": "8e237702fb7d3d16d8d1",
+    "url": "/budgetcalendar/static/js/2.bb6a1b73.chunk.js"
   },
   {
     "revision": "5e9b6f5c16b720e8a86875f97734673e",
-    "url": "/budgetcalendar/static/js/2.c8252b00.chunk.js.LICENSE.txt"
+    "url": "/budgetcalendar/static/js/2.bb6a1b73.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "bcc4a42ad9ead695ce6f",
-    "url": "/budgetcalendar/static/js/main.4dadd7e8.chunk.js"
+    "revision": "fa01d63b6bbde8fb69b1",
+    "url": "/budgetcalendar/static/js/main.8243ba68.chunk.js"
   },
   {
     "revision": "fcbf69bce7817c5ab859",

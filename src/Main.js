@@ -6,6 +6,8 @@ import { getMonthName } from './DateFunctions'
 import { getYear, getDate, isBefore, isSameDay } from 'date-fns'
 import Grid from '@material-ui/core/Grid'
 
+import './Main.css'
+
 class Main extends React.Component {
     constructor(props) {
         super(props);
@@ -30,6 +32,7 @@ class Main extends React.Component {
         this.getAddTransactionsOnDate = this.getAddTransactionsOnDate.bind(this);
         this.getSubTransactionsOnDate = this.getSubTransactionsOnDate.bind(this);
         this.addTransactionOnSelectedDate = this.addTransactionOnSelectedDate.bind(this);
+        this.deleteTransactionOnSelectedDate = this.deleteTransactionOnSelectedDate.bind(this);
     }
 
     addDate = (date) => {
@@ -116,6 +119,39 @@ class Main extends React.Component {
         this.addDate(newDate);
     }
 
+    deleteTransactionOnSelectedDate(index, isAdd) {
+        var dateIndex;
+        for (var i = 0; i < this.state.dates.length; i++)
+            if (isSameDay(this.state.selectedDate, this.state.dates[i].date)) {
+                dateIndex = i;
+                break;
+            }
+        
+        if (dateIndex == null)
+            return;
+        
+        var dateEntry = this.state.dates;
+        var newArray = [];
+        if (isAdd) {
+            for (i = 0; i < dateEntry[dateIndex].increases.length; i++) {
+                if (i !== index) {
+                    newArray = [...newArray, dateEntry[dateIndex].increases[i]];
+                }
+            }
+            dateEntry[dateIndex].increases = newArray;
+        }
+        else {
+            for (i = 0; i < dateEntry[dateIndex].decreases.length; i++) {
+                if (i !== index) {
+                    newArray = [...newArray, dateEntry[dateIndex].decreases[i]];
+                }
+            }
+            dateEntry[dateIndex].decreases = newArray;
+        }
+
+        this.setState({dates: dateEntry});
+    }
+
     render() {
         return (
             <>
@@ -138,10 +174,13 @@ class Main extends React.Component {
                     />
                     </Grid>
                     <Grid item xs>
+                        <div className="transaction">
                         <Transaction
                           increases={this.getAddTransactionsOnDate(this.state.selectedDate)}
                           decreases={this.getSubTransactionsOnDate(this.state.selectedDate)}
+                          deleteTransactionOnSelectedDate={this.deleteTransactionOnSelectedDate}
                         />
+                        </div>
                     </Grid>
                 </Grid>
             </>

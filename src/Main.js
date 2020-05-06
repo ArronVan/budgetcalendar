@@ -16,18 +16,9 @@ class Main extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            budget: 500,
+            budget: 0,
             selectedDate: Date.now(),
-            dates: [
-                {date: new Date(2020, 3, 19),
-                 increases: [{description: "Add Money 1", value: 100}, {description: "Add Money 2", value: 200.5}],
-                 decreases: [{description: "Pay Money 1", value: 20.3}]
-                },
-                {date: new Date(2020, 4, 11),
-                 increases: [{description: "Add Money 1", value: 300.02}],
-                 decreases: [{description: "Pay Money 1", value: 500}]
-                }
-            ],
+            dates: [],
             resetModalOpen: false
         };
 

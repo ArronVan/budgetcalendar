@@ -12,6 +12,9 @@ import Modal from '@material-ui/core/Modal'
 import './Main.css'
 import 'react-notifications/lib/notifications.css';
 
+const LOCAL_STORAGE_BUDGET_KEY = 'budgetCalendar.budget';
+const LOCAL_STORAGE_DATES_KEY = 'budgetCalendar.dates';
+
 class Main extends React.Component {
     constructor(props) {
         super(props);
@@ -33,18 +36,54 @@ class Main extends React.Component {
         this.closeResetModal = this.closeResetModal.bind(this);
         this.openResetModal = this.openResetModal.bind(this);
         this.resetAllData = this.resetAllData.bind(this);
+        this.loadStates = this.loadStates.bind(this);
+    }
+
+    saveStates() {
+        localStorage.setItem(LOCAL_STORAGE_BUDGET_KEY, JSON.stringify(this.state.budget));
+        localStorage.setItem(LOCAL_STORAGE_DATES_KEY, JSON.stringify(this.state.dates));
+    }
+
+    loadStates() {
+        const storedBudget = JSON.parse(localStorage.getItem(LOCAL_STORAGE_BUDGET_KEY));
+        const storedDates = JSON.parse(localStorage.getItem(LOCAL_STORAGE_DATES_KEY));
+
+        if (storedBudget)
+            this.setState({budget: storedBudget});
+        if (storedDates)
+            this.setState({dates: storedDates});
+    }
+
+    componentDidMount() {
+        this.loadStates();
+
+        window.addEventListener(
+            "beforeunload",
+            this.saveStates.bind(this)
+        );
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener(
+            "beforeunload",
+            this.saveStates.bind(this)
+        );
+
+        this.saveStates();
     }
 
     addDate = (date) => {
         this.setState((state, props) => ({
             dates: [...this.state.dates, date]
         }));
+        this.saveStates();
     }
 
     changeBudget(amount) {
         this.setState({
             budget: amount
         });
+        this.saveStates();
     }
 
     changeSelectedDate(date) {
@@ -117,6 +156,7 @@ class Main extends React.Component {
             newDate.decreases = [{description: description, value: amount}];
         
         this.addDate(newDate);
+        this.saveStates();
     }
 
     deleteTransactionOnSelectedDate(index, isAdd) {
@@ -150,6 +190,7 @@ class Main extends React.Component {
         }
 
         this.setState({dates: dateEntry});
+        this.saveStates();
     }
 
     createNotification(type, title, message) {
@@ -184,6 +225,7 @@ class Main extends React.Component {
         });
         this.closeResetModal();
         this.createNotification('info', null, "All transactions have been removed and the current balance has been set to $0.");
+        this.saveStates();
     }
 
     render() {

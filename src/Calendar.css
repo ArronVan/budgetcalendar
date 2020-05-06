@@ -23,3 +23,16 @@
     justify-content: center;
     background-color: #e6f5f8;
 }
+
+.CalendarListHeader {
+    width: 500px;
+    margin: auto;
+}
+
+.YearInput {
+    font-size: 15px;
+    padding: 8px 15px;
+    border-radius: 4px;
+    color: #333;
+    width: 15%;
+}

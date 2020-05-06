@@ -1,5 +1,6 @@
 import React from 'react'
 import Button from '@material-ui/core/Button'
+import Grid from '@material-ui/core/Grid'
 
 import './Transaction.css'
 
@@ -43,12 +44,20 @@ class Transaction extends React.Component {
     render() {
         return (
             <div ref={node => { this.node = node; }}>
+                <b style={{fontSize: 20}}>Transactions</b>
                 <ul className="list">
                     {this.props.increases.map((item, index) => {
                         return <>
                             <li className="plus">
-                                +${item.value} {item.description}
-                                <button className="delete-btn" onClick={() => this.enableDeleteConfirm(index, true)}>x</button>
+                                <Grid container justify="center" spacing={0}>
+                                    <Grid item xs style={{textAlign: 'left'}}>
+                                        {item.description}
+                                    </Grid>
+                                    <Grid item xs style={{textAlign: 'right'}}>
+                                        +${item.value.toFixed(2)}
+                                        <button className="delete-btn" onClick={() => this.enableDeleteConfirm(index, true)}>x</button>
+                                    </Grid>
+                                </Grid>
                             </li>
                             {index === this.state.deleteSelected && this.state.onAdd ? <>
                                 Are you sure you want to remove this transaction?
@@ -61,7 +70,12 @@ class Transaction extends React.Component {
                     {this.props.decreases.map((item, index) => {
                         return <>
                             <li className="minus">
-                                -${item.value} {item.description}
+                                <Grid item xs style={{textAlign: 'left'}}>
+                                    {item.description}
+                                </Grid>
+                                <Grid item xs style={{textAlign: 'right'}}>
+                                    -${item.value.toFixed(2)}
+                                </Grid>
                                 <button className="delete-btn" onClick={() => this.enableDeleteConfirm(index, false)}>x</button>
                             </li>
                             {index === this.state.deleteSelected && !this.state.onAdd ? <>

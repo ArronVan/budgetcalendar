@@ -13,6 +13,18 @@ export const getDayOfWeekName = (date) => {
     return '';
 }
 
+export const getDayOfWeekShortName = (date) => {
+    if (isSunday(date)) return 'SUN';
+    else if (isMonday(date)) return 'MON';
+    else if (isTuesday(date)) return 'TUES';
+    else if (isWednesday(date)) return 'WED';
+    else if (isThursday(date)) return 'THURS';
+    else if (isFriday(date)) return 'FRI';
+    else if (isSaturday(date)) return 'SAT';
+    
+    return '';
+}
+
 export const getMonthName = (date) => {
     let val = getMonth(date);
 

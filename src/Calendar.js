@@ -11,16 +11,33 @@ import Button from '@material-ui/core/Button'
 
 import './Calendar.css'
 
+const calendarRef = React.createRef();
+
 class Calendar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             month: getMonth(this.props.selectedDate),
             year: getYear(this.props.selectedDate),
-            inputYear : getYear(this.props.selectedDate).toString()
+            inputYear: getYear(this.props.selectedDate).toString()
         }
 
         this.changeYear = this.changeYear.bind(this);
+        this.goToCurrentDate = this.goToCurrentDate.bind(this);
+    }
+
+    componentDidMount() {
+        calendarRef.current.scrollToItem(getDate(this.props.selectedDate) - 1);
+    }
+
+    goToCurrentDate() {
+        this.props.changeSelectedDate(Date.now());
+        this.setState({
+            month: getMonth(Date.now()),
+            year: getYear(Date.now()),
+            inputYear: getYear(Date.now()).toString()
+        });
+        calendarRef.current.scrollToItem(getDate(Date.now()) - 1);
     }
 
     changeYear(value) {
@@ -98,6 +115,7 @@ class Calendar extends React.Component {
                         width={500}
                         itemSize={60}
                         itemCount={allDaysInMonth.length}
+                        ref={calendarRef}
                     >
                         {({ index, style }) => (
                             <div style={style}
@@ -130,6 +148,13 @@ class Calendar extends React.Component {
                             </div>
                         )}
                     </List>
+                </div>
+                <div className="CalendarListHeader" style={{textAlign: 'right'}}>
+                    <Button
+                    color="primary"
+                    onClick={this.goToCurrentDate}>
+                        Go to Today
+                    </Button>
                 </div>
             </>
         );

@@ -95,12 +95,20 @@ class Calendar extends React.Component {
                                              {getDate(allDaysInMonth[index])}
                                          </Grid>
                                          <Grid item xs={7} style={{fontSize: 20}}>
-                                            {this.props.getBudgetAmountOnDate(allDaysInMonth[index])}
+                                            {this.props.getBudgetAmountOnDate(allDaysInMonth[index]) < 0 ? '-' : ''}
+                                            ${Math.abs(this.props.getBudgetAmountOnDate(allDaysInMonth[index]))}
                                          </Grid>
                                          <Grid item xs={2}>
-                                            +{this.props.getAddTransactionsOnDate(allDaysInMonth[index]).length}
-                                            <br/>
-                                            -{this.props.getSubTransactionsOnDate(allDaysInMonth[index]).length}
+                                             <div style={{color: '#2ecc71', fontSize: '20px', top: 0, right: 30, position: 'absolute'}}>
+                                                {this.props.getAddTransactionsOnDate(allDaysInMonth[index]).length > 0 ?
+                                                "+" + this.props.getAddTransactionsOnDate(allDaysInMonth[index]).length
+                                                : ''}
+                                             </div>
+                                             <div style={{color: '#c0392b', fontSize: '20px', bottom: 0, right: 30, textAlign: 'right', position: 'absolute'}}>
+                                                {this.props.getSubTransactionsOnDate(allDaysInMonth[index]).length > 0 ?
+                                                "-" + this.props.getSubTransactionsOnDate(allDaysInMonth[index]).length
+                                                : ''}
+                                             </div>
                                          </Grid>
                                      </Grid>
                             </div>

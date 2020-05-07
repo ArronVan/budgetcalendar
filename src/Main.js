@@ -3,7 +3,7 @@ import Calendar from './Calendar'
 import InputFields from './InputFields'
 import Transaction from './Transaction'
 import { getMonthName } from './DateFunctions'
-import { getYear, getDate, isBefore, isSameDay } from 'date-fns'
+import { getYear, getDate, isBefore, isSameDay, getTime } from 'date-fns'
 import Grid from '@material-ui/core/Grid'
 import {NotificationContainer, NotificationManager} from 'react-notifications'
 import Button from '@material-ui/core/Button'
@@ -88,7 +88,7 @@ class Main extends React.Component {
 
     changeSelectedDate(date) {
         this.setState((state, props) => ({
-            selectedDate: date
+            selectedDate: getTime(date)
         }));
     }
 
@@ -233,7 +233,10 @@ class Main extends React.Component {
             <>
                 <NotificationContainer/>
                 <p>
-                    <h1>Current Balance: ${this.getBudgetAmountOnDate(this.state.selectedDate)}</h1>
+                    <h1>
+                        Current Balance: {this.getBudgetAmountOnDate(this.state.selectedDate) < 0 ? '-' : ''}
+                        ${Math.abs(this.getBudgetAmountOnDate(this.state.selectedDate))}
+                    </h1>
                     Selected Date: {getMonthName(this.state.selectedDate)} {getDate(this.state.selectedDate)}, {getYear(this.state.selectedDate)}
                 </p>
                 <InputFields

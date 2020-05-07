@@ -174,7 +174,7 @@ class InputFields extends React.Component {
                             /> <span
                                 style={{cursor: 'pointer'}}
                                 onClick={() => this.setState({isAdd: false})}>
-                                    Decreasing
+                                    Decrease
                                 </span>
                             <Radio
                             checked={this.state.isAdd}
@@ -183,7 +183,7 @@ class InputFields extends React.Component {
                             /> <span
                                 style={{cursor: 'pointer'}}
                                 onClick={() => this.setState({isAdd: true})}>
-                                    Increasing
+                                    Increase
                                 </span>
                         </div>
                         <br/>

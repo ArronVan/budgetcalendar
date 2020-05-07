@@ -171,12 +171,20 @@ class InputFields extends React.Component {
                             checked={!this.state.isAdd}
                             onChange={() => this.setState({isAdd: !this.state.isAdd})}
                             value={false}
-                            /> Decreasing
+                            /> <span
+                                style={{cursor: 'pointer'}}
+                                onClick={() => this.setState({isAdd: false})}>
+                                    Decreasing
+                                </span>
                             <Radio
                             checked={this.state.isAdd}
                             onChange={() => this.setState({isAdd: !this.state.isAdd})}
                             value={true}
-                            /> Increasing
+                            /> <span
+                                style={{cursor: 'pointer'}}
+                                onClick={() => this.setState({isAdd: true})}>
+                                    Increasing
+                                </span>
                         </div>
                         <br/>
                         <Button style={{marginRight: '10px'}} variant="contained" color="secondary" onClick={this.closeAll}>Cancel</Button>

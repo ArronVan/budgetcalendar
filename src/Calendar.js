@@ -7,6 +7,7 @@ import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import NumberFormat from 'react-number-format'
 import Grid from '@material-ui/core/Grid'
+import Button from '@material-ui/core/Button'
 
 import './Calendar.css'
 
@@ -15,8 +16,20 @@ class Calendar extends React.Component {
         super(props);
         this.state = {
             month: getMonth(this.props.selectedDate),
-            year: getYear(this.props.selectedDate)
+            year: getYear(this.props.selectedDate),
+            inputYear : getYear(this.props.selectedDate).toString()
         }
+
+        this.changeYear = this.changeYear.bind(this);
+    }
+
+    changeYear(value) {
+        var newValue = this.state.year + value;
+        if (newValue >= 0 && newValue < 10000)
+            this.setState({
+                year: newValue,
+                inputYear: newValue.toString()
+            });
     }
 
     render() {
@@ -48,19 +61,22 @@ class Calendar extends React.Component {
                             </FormControl>
                         </Grid>
                         <Grid item xs={6}>
+                            <Button onClick={() => this.changeYear(-1)}>{'<'}</Button>
                             <NumberFormat
-                                defaultValue={this.state.year}
+                                value={this.state.inputYear}
                                 thousandSeparator={false}
                                 allowNegative={false}
                                 decimalScale={0}
                                 isAllowed={(values => {return values.value === "" || values.floatValue < 10000;})}
                                 onValueChange={(values) => {
                                 this.setState({
-                                    year: values.floatValue > 0 ? values.floatValue : 0
+                                    year: values.floatValue > 0 ? values.floatValue : 0,
+                                    inputYear: values.value
                                     });}
                                 }
                                 className="YearInput"
                             />
+                            <Button onClick={() => this.changeYear(1)}>{'>'}</Button>
                         </Grid>
                     </Grid>
                     <br/>

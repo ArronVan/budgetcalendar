@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "330d5d94e1dd8ea8dbff5428e575b0b7",
+    "revision": "1b96fe4aba4b7cbf5c76fb2055e3109c",
     "url": "/budgetcalendar/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/budgetcalendar/static/css/2.81168d54.chunk.css"
   },
   {
-    "revision": "248b0f02663de90c3090",
+    "revision": "18df82de4c064270e444",
     "url": "/budgetcalendar/static/css/main.4011dafe.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/budgetcalendar/static/js/2.4a5cc9b8.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "248b0f02663de90c3090",
-    "url": "/budgetcalendar/static/js/main.3278998b.chunk.js"
+    "revision": "18df82de4c064270e444",
+    "url": "/budgetcalendar/static/js/main.41542fd2.chunk.js"
   },
   {
     "revision": "fcbf69bce7817c5ab859",

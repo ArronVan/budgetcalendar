@@ -26,6 +26,9 @@ class InputFields extends React.Component {
         this.showAddTransaction = this.showAddTransaction.bind(this);
         this.closeAll = this.closeAll.bind(this);
         this.handleOutsideClick = this.handleOutsideClick.bind(this);
+
+        this.changeBudgetRef = React.createRef();
+        this.addTransactionRef = React.createRef();
     }
 
     handleOutsideClick(e) {
@@ -77,15 +80,19 @@ class InputFields extends React.Component {
     showChangeBudget() {
         this.closeAll();
         this.setState({showChangeBudget: true});
-
         document.addEventListener('click', this.handleOutsideClick, false);
+        setTimeout(() => {
+            this.changeBudgetRef.focus();
+        }, 0);
     }
 
     showAddTransaction() {
         this.closeAll();
         this.setState({showAddTransaction: true});
-
         document.addEventListener('click', this.handleOutsideClick, false);
+        setTimeout(() => {
+            this.addTransactionRef.current.focus();
+        }, 0);
     }
 
     closeAll() {
@@ -124,6 +131,8 @@ class InputFields extends React.Component {
                           onValueChange={(values) => { this.setState({currencyValue: values.floatValue}); }}
                           className="InputFieldInput"
                           style={{marginTop: '10px', borderColor: (this.state.showBudgetError ? 'red' : 'initial')}}
+                          getInputRef={(elem) => {this.changeBudgetRef = elem}}
+                          onKeyPress={(event) => {if (event.key === "Enter") this.changeBudget()}}
                         />
                         <br/>
                         {this.state.showBudgetError ?
@@ -144,6 +153,8 @@ class InputFields extends React.Component {
                           value={this.state.transactionDescription}
                           onChange={(event) => this.setState({transactionDescription: event.target.value})}
                           style={{marginTop: '10px', borderColor: (this.state.showTransactionNameError ? 'red' : 'initial')}}
+                          ref={this.addTransactionRef}
+                          onKeyPress={(event) => {if (event.key === "Enter") this.addTransaction()}}
                         />
                         <div style={{color: 'red'}}>
                             {this.state.showTransactionNameError ?
@@ -161,6 +172,7 @@ class InputFields extends React.Component {
                           onValueChange={(values) => { this.setState({currencyValue: values.floatValue}); }}
                           className="InputFieldInput"
                           style={{borderColor: (this.state.showTransactionValueError ? 'red' : 'initial')}}
+                          onKeyPress={(event) => {if (event.key === "Enter") this.addTransaction()}}
                         />
                         <div style={{color: 'red'}}>
                             {this.state.showTransactionValueError ?

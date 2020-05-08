@@ -129,7 +129,7 @@ class InputFields extends React.Component {
                           placeholder="$0.00"
                           decimalScale={2}
                           isAllowed={(values) => {
-                              return values.floatValue == null || values.floatValue < 1000000000;
+                              return values.floatValue == null || values.floatValue < 1000000000000;
                           }}
                           onValueChange={(values) => { this.setState({currencyValue: values.floatValue}); }}
                           className="InputFieldInput"
@@ -174,7 +174,7 @@ class InputFields extends React.Component {
                           placeholder="$0.00"
                           decimalScale={2}
                           isAllowed={(values) => {
-                              return values.floatValue == null || values.floatValue < 1000000000;
+                              return values.floatValue == null || values.floatValue < 1000000000000;
                           }}
                           onValueChange={(values) => { this.setState({currencyValue: values.floatValue}); }}
                           className="InputFieldInput"

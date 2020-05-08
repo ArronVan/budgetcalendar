@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/budgetcalendar/static/css/main.4011dafe.chunk.css",
-    "main.js": "/budgetcalendar/static/js/main.f9b67b1c.chunk.js",
-    "main.js.map": "/budgetcalendar/static/js/main.f9b67b1c.chunk.js.map",
+    "main.js": "/budgetcalendar/static/js/main.88a18a22.chunk.js",
+    "main.js.map": "/budgetcalendar/static/js/main.88a18a22.chunk.js.map",
     "runtime-main.js": "/budgetcalendar/static/js/runtime-main.4d9a6e75.js",
     "runtime-main.js.map": "/budgetcalendar/static/js/runtime-main.4d9a6e75.js.map",
     "static/css/2.81168d54.chunk.css": "/budgetcalendar/static/css/2.81168d54.chunk.css",
     "static/js/2.4a5cc9b8.chunk.js": "/budgetcalendar/static/js/2.4a5cc9b8.chunk.js",
     "static/js/2.4a5cc9b8.chunk.js.map": "/budgetcalendar/static/js/2.4a5cc9b8.chunk.js.map",
     "index.html": "/budgetcalendar/index.html",
-    "precache-manifest.20111359b8cf1cbefdc86d4b1ba134a6.js": "/budgetcalendar/precache-manifest.20111359b8cf1cbefdc86d4b1ba134a6.js",
+    "precache-manifest.991e3d9f615fb824db6e1072eac0b1b4.js": "/budgetcalendar/precache-manifest.991e3d9f615fb824db6e1072eac0b1b4.js",
     "service-worker.js": "/budgetcalendar/service-worker.js",
     "static/css/2.81168d54.chunk.css.map": "/budgetcalendar/static/css/2.81168d54.chunk.css.map",
     "static/css/main.4011dafe.chunk.css.map": "/budgetcalendar/static/css/main.4011dafe.chunk.css.map",
@@ -21,6 +21,6 @@
     "static/css/2.81168d54.chunk.css",
     "static/js/2.4a5cc9b8.chunk.js",
     "static/css/main.4011dafe.chunk.css",
-    "static/js/main.f9b67b1c.chunk.js"
+    "static/js/main.88a18a22.chunk.js"
   ]
 }

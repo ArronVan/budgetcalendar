@@ -153,6 +153,7 @@ class InputFields extends React.Component {
                           value={this.state.transactionDescription}
                           onChange={(event) => this.setState({transactionDescription: event.target.value})}
                           style={{marginTop: '10px', borderColor: (this.state.showTransactionNameError ? 'red' : 'initial')}}
+                          maxLength="20"
                           ref={this.addTransactionRef}
                           onKeyPress={(event) => {if (event.key === "Enter") this.addTransaction()}}
                         />

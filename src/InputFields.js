@@ -40,7 +40,7 @@ class InputFields extends React.Component {
     }
 
     changeBudget() {
-        if (this.state.currencyValue == null || !this.state.currencyValue > 0)
+        if (this.state.currencyValue == null)
         {
             this.setState({showBudgetError: true});
             return;
@@ -118,7 +118,7 @@ class InputFields extends React.Component {
                 <div className="InputField">
                     {this.state.showChangeBudget ?
                     <>
-                        Enter the value that you want your new initial budget to be.
+                        Enter the value that you want your new initial balance to be.
                         <br/>
                         <WarningIcon style={{color: 'red', opacity: (this.state.showBudgetError ? 1 : 0)}}/>
                         <NumberFormat
@@ -136,14 +136,14 @@ class InputFields extends React.Component {
                         />
                         <br/>
                         {this.state.showBudgetError ?
-                        <div style={{color: 'red'}}>Value must be greater than $0.</div>
+                        <div style={{color: 'red'}}>Value must be a number and cannot be empty.</div>
                         : ''}
                         <Button style={{marginTop: '10px', marginRight: '10px'}} variant="contained" color="secondary" onClick={this.closeAll}>Cancel</Button>
                         <Button style={{marginTop: '10px', marginLeft: '10px'}} variant="contained" color="primary" onClick={this.changeBudget}>Change</Button>
                     </> : ''}
                     {this.state.showAddTransaction ?
                     <>
-                        Enter the name of your new transaction, its value, and if it should increase or decrease your overall budget.
+                        Enter the name of your new transaction, its value, and if it should increase or decrease your overall balance.
                         <br/>
                         <WarningIcon style={{color: 'red', opacity: (this.state.showTransactionNameError ? 1 : 0)}}/>
                         <input
@@ -177,7 +177,7 @@ class InputFields extends React.Component {
                         />
                         <div style={{color: 'red'}}>
                             {this.state.showTransactionValueError ?
-                            'Value must be greater than $0.' : ''}
+                            'Value must be greater than $0 and cannot be empty.' : ''}
                         </div>
                         <div style={{marginTop: '10px'}}>
                             <Radio

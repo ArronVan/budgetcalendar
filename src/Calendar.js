@@ -1,5 +1,5 @@
 import React from 'react'
-import { getAllDaysInMonth, getDayOfWeekShortName } from './DateFunctions'
+import { getAllDaysInMonth, getDayOfWeekShortName, addComma } from './DateFunctions'
 import { FixedSizeList as List } from 'react-window'
 import { getDate, getMonth, getYear, isSameDay } from 'date-fns'
 import FormControl from '@material-ui/core/FormControl'
@@ -130,7 +130,7 @@ class Calendar extends React.Component {
                                          </Grid>
                                          <Grid item xs={7} style={{fontSize: 20}}>
                                             {this.props.getBudgetAmountOnDate(allDaysInMonth[index]) < 0 ? '-' : ''}
-                                            ${Math.abs(this.props.getBudgetAmountOnDate(allDaysInMonth[index]))}
+                                            ${addComma(Math.abs(this.props.getBudgetAmountOnDate(allDaysInMonth[index])))}
                                          </Grid>
                                          <Grid item xs={2}>
                                              <div style={{color: '#2ecc71', fontSize: '20px', top: 0, right: 30, position: 'absolute'}}>

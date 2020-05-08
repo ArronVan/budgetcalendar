@@ -2,7 +2,7 @@ import React from 'react'
 import Calendar from './Calendar'
 import InputFields from './InputFields'
 import Transaction from './Transaction'
-import { getMonthName } from './DateFunctions'
+import { getMonthName, addComma } from './DateFunctions'
 import { getYear, getDate, isBefore, isSameDay, getTime } from 'date-fns'
 import Grid from '@material-ui/core/Grid'
 import {NotificationContainer, NotificationManager} from 'react-notifications'
@@ -235,7 +235,7 @@ class Main extends React.Component {
                 <p>
                     <h1>
                         Current Balance: {this.getBudgetAmountOnDate(this.state.selectedDate) < 0 ? '-' : ''}
-                        ${Math.abs(this.getBudgetAmountOnDate(this.state.selectedDate))}
+                        ${addComma(Math.abs(this.getBudgetAmountOnDate(this.state.selectedDate)))}
                     </h1>
                     Selected Date: {getMonthName(this.state.selectedDate)} {getDate(this.state.selectedDate)}, {getYear(this.state.selectedDate)}
                 </p>

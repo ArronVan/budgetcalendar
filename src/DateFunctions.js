@@ -50,3 +50,9 @@ export const getAllDaysInMonth = (date) => {
 
     return eachDayOfInterval({ start: startDate, end: endDate });
 }
+
+export const addComma = (value) => {
+    return value.toLocaleString('en', {
+        minimumFractionDigits: 2
+    });
+}

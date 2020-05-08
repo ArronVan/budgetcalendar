@@ -1,6 +1,7 @@
 import React from 'react'
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
+import { addComma } from './DateFunctions'
 
 import './Transaction.css'
 
@@ -54,7 +55,7 @@ class Transaction extends React.Component {
                                         {item.description}
                                     </Grid>
                                     <Grid item xs style={{textAlign: 'right'}}>
-                                        +${item.value.toFixed(2)}
+                                        +${addComma(item.value)}
                                         <button className="delete-btn" onClick={() => this.enableDeleteConfirm(index, true)}>x</button>
                                     </Grid>
                                 </Grid>
@@ -74,7 +75,7 @@ class Transaction extends React.Component {
                                     {item.description}
                                 </Grid>
                                 <Grid item xs style={{textAlign: 'right'}}>
-                                    -${item.value.toFixed(2)}
+                                    -${addComma(item.value)}
                                 </Grid>
                                 <button className="delete-btn" onClick={() => this.enableDeleteConfirm(index, false)}>x</button>
                             </li>
